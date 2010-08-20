@@ -7,8 +7,9 @@ particleFlags: enum from UChar
 		TYPE_LIQUID        = 0b00000010
 		TYPE_SOLID         = 0b00000100
 		TYPE_GAS           = 0b00001000
-		PROP_CONDUCTS      = 0b00010000
-		PROP_RADIOACTIVE   = 0b00100000
+		TYPE_FLASH         = 0b00010000
+		PROP_CONDUCTS      = 0b00100000
+		PROP_RADIOACTIVE   = 0b01000000
 }
 
 status: Int;
