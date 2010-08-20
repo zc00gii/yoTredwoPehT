@@ -1,15 +1,16 @@
 use sdl, gl
 import sdl, gl
 
-particleFlags: enum from UChar
+particleFlags: enum from UShort
 {
-		TYPE_PART          = 0b00000001
-		TYPE_LIQUID        = 0b00000010
-		TYPE_SOLID         = 0b00000100
-		TYPE_GAS           = 0b00001000
-		TYPE_FLASH         = 0b00010000
-		PROP_CONDUCTS      = 0b00100000
-		PROP_RADIOACTIVE   = 0b01000000
+		TYPE_PART          = 0b0000000000000001
+		TYPE_LIQUID        = 0b0000000000000010
+		TYPE_SOLID         = 0b0000000000000100
+		TYPE_GAS           = 0b0000000000001000
+		TYPE_FLASH         = 0b0000000000010000
+		TYPE_WALL          = 0b0000000000100000
+		PROP_CONDUCTS      = 0b0000000001000000
+		PROP_RADIOACTIVE   = 0b0000000010000000
 }
 
 status: Int;
