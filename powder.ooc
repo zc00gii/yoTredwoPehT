@@ -3,12 +3,12 @@ import sdl, gl
 
 particleFlags: enum from UChar
 {
-		TYPE_PART          = 0x01 //1
-		TYPE_LIQUID        = 0x02 //2
-		TYPE_SOLID         = 0x04 //4
-		TYPE_GAS           = 0x08 //8
-		PROP_CONDUCTS      = 0x10 //16
-		PROP_RADIOACTIVE = 0x12 //18
+		TYPE_PART          = 0b00000001
+		TYPE_LIQUID        = 0b00000010
+		TYPE_SOLID         = 0b00000100
+		TYPE_GAS           = 0b00001000
+		PROP_CONDUCTS      = 0b00010000
+		PROP_RADIOACTIVE   = 0b00100000
 }
 
 status: Int;
@@ -17,23 +17,19 @@ frames: UInt = 0;
 
 renderLoop: func {}
 
-quit: func
-{
+quit: func {
 		sdlQuit()
 }
 
-particle: class
-{
+particle: class {
 		kill: func {}
 }
 
-renderScene: func
-{
+renderScene: func {
 		sdlGLSwapBuffers()
 }
 
-glEnable2D: func ()
-{
+glEnable2D: func () {
 		vPort: Int* = gc_malloc(Int size * 4)
 		glGetIntegerv(glEnum viewport, vPort)
 		glMatrixMode(glEnum projection)
@@ -44,13 +40,11 @@ glEnable2D: func ()
 		glLoadIdentity()
 }
 
-main: func
-{
-    "Starting The Powder Toy\n"
+main: func {
+    "Starting The Powder Toy\n" println()
     sdlWMSetCaption("The Powder Toy", null);
     sdlInit(SDLInitFlags everything);
-    screen: SDLSurface*= sdlSetVideoMode(640, 480, 16,
-				(SDLVideoFlags opengl | SDLVideoFlags doubleBuffer))
+    screen := sdlSetVideoMode(640, 480, 16, (SDLVideoFlags opengl | SDLVideoFlags doubleBuffer))
     glEnable2D()
     sdlGLSetAttribute(SDLSurfaceFlags doubleBuffer, 1);
     renderLoop()
